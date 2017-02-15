@@ -32,11 +32,14 @@ if (command === null) {
   }
 }
 
-if (command === 'install' && argv[0] && argv[0] === 'eslint') {
+if (command === 'install' && argv[0]) {
   winston.log('debug', 'Install eslint')
 
+  var yo = __dirname + '/../node_modules/yo/lib/cli.js'
+
+  winston.log('debug', 'Yo path', yo)
   winston.log('debug', 'Spawn Yeoman child process')
   var spawn = require('child_process').spawnSync;
-  var child = spawn('npm.cmd', ['run', 'yo', 'eslint'], {stdio: 'inherit'});
+  var child = spawn('node', [yo, argv[0]], {stdio: 'inherit'})
   winston.log('debug', 'Finished Yeoman child process')
 }
