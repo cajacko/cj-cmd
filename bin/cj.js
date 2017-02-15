@@ -1,25 +1,37 @@
 #! /usr/bin/env node
-console.log("console.log output")
+
+var winston = require('winston')
+winston.cli()
 
 const commandLineCommands = require('command-line-commands')
 
 const validCommands = [ null, 'install' ]
 const { command, argv } = commandLineCommands(validCommands)
 
-/* print the command and remaining command-line args */
-console.log('command: %s', command)
-console.log('argv:    %s', JSON.stringify(argv))
+if (argv.length && argv[argv.length - 1] == '--debug') {
+  winston.level = 'debug'
+}
+
+winston.log('debug', 'Command: ', command)
+winston.log('debug', 'Args: ', argv)
 
 if (command === null) {
+  winston.log('debug', 'No command')
   const commandLineArgs = require('command-line-args')
   const optionDefinitions = [
-    { name: 'version', type: Boolean }
+    { name: 'version', type: Boolean },
+    { name: 'debug', type: Boolean }
   ]
 
   // pass in the `argv` returned by `commandLineCommands()`
   const options = commandLineArgs(optionDefinitions, argv)
 
   if (options.version) {
+    winston.log('debug', 'Get version')
     console.log('version 1.0.1')
   }
+}
+
+if (command === 'install' && argv[0] && argv[0] === 'eslint') {
+  winston.log('debug', 'Install eslint')
 }

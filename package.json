@@ -13,6 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "command-line-args": "4.0.1",
-    "command-line-commands": "2.0.0"
+    "command-line-commands": "2.0.0",
+    "winston": "2.3.1"
   }
 }
