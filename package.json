@@ -6,6 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "cj": "bin/cj.js"
+  },
   "author": "Charlie Jackson",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "command-line-args": "4.0.1",
+    "command-line-commands": "2.0.0"
+  }
 }
