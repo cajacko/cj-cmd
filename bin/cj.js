@@ -34,4 +34,9 @@ if (command === null) {
 
 if (command === 'install' && argv[0] && argv[0] === 'eslint') {
   winston.log('debug', 'Install eslint')
+
+  winston.log('debug', 'Spawn Yeoman child process')
+  var spawn = require('child_process').spawnSync;
+  var child = spawn('npm.cmd', ['run', 'yo', 'eslint'], {stdio: 'inherit'});
+  winston.log('debug', 'Finished Yeoman child process')
 }

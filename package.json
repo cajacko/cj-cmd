@@ -4,7 +4,8 @@
   "description": "Command utility for Charlie Jackson",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "yo": "node node_modules/yo/lib/cli.js"
   },
   "bin": {
     "cj": "bin/cj.js"
@@ -14,6 +15,7 @@
   "dependencies": {
     "command-line-args": "4.0.1",
     "command-line-commands": "2.0.0",
-    "winston": "2.3.1"
+    "winston": "2.3.1",
+    "yo": "1.8.5"
   }
 }
