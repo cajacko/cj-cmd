@@ -1,0 +1,11 @@
+{
+  "name": "cj-cmd",
+  "version": "1.0.0",
+  "description": "Command utility for Charlie Jackson",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Charlie Jackson",
+  "license": "MIT"
+}
