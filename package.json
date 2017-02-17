@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "yo": "node node_modules/yo/lib/cli.js",
-    "lint": "eslint **/*.js"
+    "lint": "eslint **/*.js",
+    "eslint": "eslint"
   },
   "bin": {
     "cj": "bin/cj.js"

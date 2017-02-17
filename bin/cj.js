@@ -1,45 +1,48 @@
 #! /usr/bin/env node
 
-var winston = require('winston')
-winston.cli()
+const winston = require('winston');
+const commandLineArgs = require('command-line-args');
+const path = require('path');
+const spawn = require('child_process').spawnSync;
+const commandLineCommands = require('command-line-commands');
 
-const commandLineCommands = require('command-line-commands')
+winston.cli();
 
-const validCommands = [ null, 'install' ]
-const { command, argv } = commandLineCommands(validCommands)
+const validCommands = [null, 'install'];
+const { command, argv } = commandLineCommands(validCommands);
 
-if (argv.length && argv[argv.length - 1] == '--debug') {
-  winston.level = 'debug'
+if (argv.length && argv[argv.length - 1] === '--debug') {
+  winston.level = 'debug';
 }
 
-winston.log('debug', 'Command: ', command)
-winston.log('debug', 'Args: ', argv)
+winston.log('debug', 'Command: ', command);
+winston.log('debug', 'Args: ', argv);
 
 if (command === null) {
-  winston.log('debug', 'No command')
-  const commandLineArgs = require('command-line-args')
   const optionDefinitions = [
     { name: 'version', type: Boolean },
     { name: 'debug', type: Boolean }
-  ]
+  ];
 
-  // pass in the `argv` returned by `commandLineCommands()`
-  const options = commandLineArgs(optionDefinitions, argv)
+  winston.log('debug', 'No command');
+
+  const options = commandLineArgs(optionDefinitions, argv);
 
   if (options.version) {
-    winston.log('debug', 'Get version')
-    console.log('version 1.0.1')
+    winston.log('debug', 'Get version');
+    winston.log('info', 'Version 1.0.0');
   }
 }
 
 if (command === 'install' && argv[0]) {
-  winston.log('debug', 'Install eslint')
+  winston.log('debug', 'Install eslint');
 
-  var yo = __dirname + '/../node_modules/yo/lib/cli.js'
+  const yo = path.join(__dirname, '/../node_modules/yo/lib/cli.js');
 
-  winston.log('debug', 'Yo path', yo)
-  winston.log('debug', 'Spawn Yeoman child process')
-  var spawn = require('child_process').spawnSync;
-  var child = spawn('node', [yo, argv[0]], {stdio: 'inherit'})
-  winston.log('debug', 'Finished Yeoman child process')
+  winston.log('debug', 'Yo path', yo);
+  winston.log('debug', 'Spawn Yeoman child process');
+
+  spawn('node', [yo, argv[0]], { stdio: 'inherit' });
+
+  winston.log('debug', 'Finished Yeoman child process');
 }
