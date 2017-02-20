@@ -1,6 +1,6 @@
 {
   "name": "cj-cmd",
-  "version": "1.0.0",
+  "version": "*",
   "description": "Command utility for Charlie Jackson",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,13 @@
   "dependencies": {
     "command-line-args": "4.0.1",
     "command-line-commands": "2.0.0",
+    "generator-cucumber-js": "*",
+    "generator-editor-config": "*",
+    "generator-eslint-cj": "*",
+    "generator-generator-cj": "*",
+    "generator-git-cj": "*",
+    "generator-gitignore-cj": "*",
+    "generator-package-json": "*",
     "winston": "2.3.1",
     "yo": "1.8.5"
   },
