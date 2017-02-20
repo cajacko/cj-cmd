@@ -1,6 +1,6 @@
 {
   "name": "cj-cmd",
-  "version": "*",
+  "version": "1.0.0",
   "description": "Command utility for Charlie Jackson",
   "main": "index.js",
   "scripts": {
