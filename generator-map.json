@@ -1,0 +1,6 @@
+{
+  "generator": "generator-cj",
+  "eslint": "eslint-cj",
+  "git": "git-cj",
+  "gitignore": "gitignore-cj"
+}

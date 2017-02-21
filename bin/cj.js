@@ -5,6 +5,7 @@ const commandLineArgs = require('command-line-args');
 const path = require('path');
 const spawn = require('child_process').spawnSync;
 const commandLineCommands = require('command-line-commands');
+const generatorMap = require('../generator-map.json');
 
 winston.cli();
 
@@ -42,7 +43,13 @@ if (command === 'install' && argv[0]) {
   winston.log('debug', 'Yo path', yo);
   winston.log('debug', 'Spawn Yeoman child process');
 
-  const generatorPath = `./../node_modules/generator-${argv[0]}/generators/app/index.js`;
+  let generatorName = argv[0];
+
+  if (generatorMap[generatorName]) {
+    generatorName = generatorMap[generatorName];
+  }
+
+  const generatorPath = `./../node_modules/generator-${generatorName}/generators/app/index.js`;
   const generator = path.join(__dirname, generatorPath);
 
   winston.log('debug', 'Generator path: ', generator);
