@@ -42,6 +42,10 @@ if (command === 'install' && argv[0]) {
   winston.log('debug', 'Yo path', yo);
   winston.log('debug', 'Spawn Yeoman child process');
 
+  const generator = `/../node_modules/generator-${argv[0]}`;
+
+  winston.log('debug', 'Generator path: ', generator);
+
   spawn('node', [yo, argv[0]], { stdio: 'inherit' });
 
   winston.log('debug', 'Finished Yeoman child process');
