@@ -65,7 +65,14 @@ if (command === 'install' && argv[0]) {
   winston.log('debug', 'npm-check-updates path', update);
   winston.log('debug', 'Spawn npm-check-updates child process');
 
-  const updateArgs = argv;
+  let updateArgs;
+
+  if (argv[0] === '--self' || argv[0] === '-s') {
+    updateArgs = ['-g', 'cj-cmd'];
+  } else {
+    updateArgs = argv;
+  }
+
   updateArgs.unshift(update);
   updateArgs.push('-u');
 
