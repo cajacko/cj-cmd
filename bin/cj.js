@@ -11,6 +11,7 @@ winston.cli();
 
 const validCommands = [null, 'install', 'update'];
 const { command, argv } = commandLineCommands(validCommands);
+const windowsEnvironment = /^win/.test(process.platform);
 
 if (argv.length && argv[argv.length - 1] === '--debug') {
   winston.level = 'debug';
@@ -63,20 +64,29 @@ if (command === 'install' && argv[0]) {
   const update = path.join(__dirname, '/../node_modules/npm-check-updates/bin/npm-check-updates');
 
   winston.log('debug', 'npm-check-updates path', update);
-  winston.log('debug', 'Spawn npm-check-updates child process');
-
-  let updateArgs;
 
   if (argv[0] === '--self' || argv[0] === '-s') {
-    updateArgs = ['-g', 'cj-cmd'];
+    winston.log('debug', 'Update self');
+    winston.log('debug', 'Spawn npm-check-updates child process');
+
+    let npm;
+
+    if (windowsEnvironment) {
+      npm = 'npm.cmd';
+    } else {
+      npm = 'npm';
+    }
+
+    spawn(npm, ['install', '-g', 'cj-cmd'], { stdio: 'inherit' });
   } else {
-    updateArgs = argv;
+    const updateArgs = argv;
+
+    updateArgs.unshift(update);
+    updateArgs.push('-u');
+
+    winston.log('debug', 'Spawn npm-check-updates child process');
+    spawn('node', updateArgs, { stdio: 'inherit' });
   }
-
-  updateArgs.unshift(update);
-  updateArgs.push('-u');
-
-  spawn('node', updateArgs, { stdio: 'inherit' });
 
   winston.log('debug', 'Finished update child process');
 }
