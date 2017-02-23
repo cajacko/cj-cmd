@@ -10,11 +10,17 @@ const npmCheck = require('npm-check');
 
 winston.cli();
 
-const validCommands = [null, 'install', 'update'];
+const validCommands = [null, 'install', 'update', 'run'];
 const { command, argv } = commandLineCommands(validCommands);
 const windowsEnvironment = /^win/.test(process.platform);
 
 const args = argv;
+let dev = false;
+
+if (args.length && args[args.length - 1] === '--dev') {
+  dev = true;
+  args.pop();
+}
 
 if (args.length && args[args.length - 1] === '--debug') {
   winston.level = 'debug';
@@ -32,6 +38,10 @@ npmCheck({
   const globalPackages = currentState.get('packages');
 
   globalPackages.forEach((globalPackage) => {
+    if (dev) {
+      return true;
+    }
+
     if (globalPackage.moduleName !== 'cj-cmd') {
       return false;
     }
@@ -116,5 +126,19 @@ npmCheck({
     }
 
     winston.log('debug', 'Finished update child process');
+  } else if (command === 'run') {
+    winston.log('debug', 'Run');
+
+    const globCom = path.join(__dirname, '/../node_modules/global-commands/index.js');
+
+    winston.log('debug', 'Global Commands path', globCom);
+    winston.log('debug', 'Spawn Global Commands child process');
+
+    const updateArgs = args;
+
+    updateArgs.unshift(globCom);
+
+    winston.log('debug', 'Spawn Global Commands child process');
+    spawn('node', updateArgs, { stdio: 'inherit' });
   }
 });
