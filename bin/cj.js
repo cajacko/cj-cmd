@@ -9,7 +9,7 @@ const generatorMap = require('../generator-map.json');
 
 winston.cli();
 
-const validCommands = [null, 'install'];
+const validCommands = [null, 'install', 'update'];
 const { command, argv } = commandLineCommands(validCommands);
 
 if (argv.length && argv[argv.length - 1] === '--debug') {
@@ -36,7 +36,7 @@ if (command === null) {
 }
 
 if (command === 'install' && argv[0]) {
-  winston.log('debug', 'Install eslint');
+  winston.log('debug', 'Install');
 
   const yo = path.join(__dirname, '/../node_modules/yo/lib/cli.js');
 
@@ -57,4 +57,19 @@ if (command === 'install' && argv[0]) {
   spawn('node', [yo, generator], { stdio: 'inherit' });
 
   winston.log('debug', 'Finished Yeoman child process');
+} else if (command === 'update') {
+  winston.log('debug', 'Update');
+
+  const update = path.join(__dirname, '/../node_modules/npm-check-updates/bin/npm-check-updates');
+
+  winston.log('debug', 'npm-check-updates path', update);
+  winston.log('debug', 'Spawn npm-check-updates child process');
+
+  const updateArgs = argv;
+  updateArgs.unshift(update);
+  updateArgs.push('-u');
+
+  spawn('node', updateArgs, { stdio: 'inherit' });
+
+  winston.log('debug', 'Finished update child process');
 }
