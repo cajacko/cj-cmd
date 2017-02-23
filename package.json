@@ -17,7 +17,7 @@
   "dependencies": {
     "command-line-args": "4.0.1",
     "command-line-commands": "2.0.0",
-    "generator-cucumber-js": "1.0.1",
+    "generator-cucumber-js": "1.0.2",
     "generator-editor-config": "1.0.1",
     "generator-eslint-cj": "1.0.1",
     "generator-generator-cj": "1.1.3",
