@@ -104,18 +104,19 @@ npmCheck({
 
     winston.log('debug', 'npm-check-updates path', update);
 
+    let npm;
+
+    if (windowsEnvironment) {
+      npm = 'npm.cmd';
+    } else {
+      npm = 'npm';
+    }
+
     if (args[0] === '--self' || args[0] === '-s') {
       winston.log('debug', 'Update self');
       winston.log('debug', 'Spawn npm-check-updates child process');
 
-      let npm;
-
-      if (windowsEnvironment) {
-        npm = 'npm.cmd';
-      } else {
-        npm = 'npm';
-      }
-
+      spawn(npm, ['uninstall', '-g', 'cj-cmd'], { stdio: 'inherit' });
       spawn(npm, ['install', '-g', 'cj-cmd'], { stdio: 'inherit' });
     } else {
       const updateArgs = args;
@@ -125,6 +126,7 @@ npmCheck({
 
       winston.log('debug', 'Spawn npm-check-updates child process');
       spawn('node', updateArgs, { stdio: 'inherit' });
+      spawn(npm, ['install'], { stdio: 'inherit' });
     }
 
     winston.log('debug', 'Finished update child process');
