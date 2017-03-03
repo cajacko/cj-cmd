@@ -15,11 +15,18 @@
   "author": "Charlie Jackson",
   "license": "MIT",
   "dependencies": {
+    "babel-eslint": "7.1.1",
     "command-line-args": "4.0.1",
     "command-line-commands": "2.0.0",
+    "eslint": "3.16.1",
+    "eslint-config-airbnb": "14.1.0",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jsx-a11y": "4.0.0",
+    "eslint-plugin-react": "6.10.0",
     "generator-cucumber-js": "*",
     "generator-editor-config": "*",
     "generator-eslint-cj": "*",
+    "generator-flow": "1.1.0",
     "generator-generator-cj": "*",
     "generator-git-cj": "*",
     "generator-gitignore-cj": "*",
@@ -28,12 +35,6 @@
     "npm-check": "5.4.0",
     "npm-check-updates": "2.10.3",
     "winston": "2.3.1",
-    "yo": "1.8.5",
-    "babel-eslint": "7.1.1",
-    "eslint": "3.16.1",
-    "eslint-config-airbnb": "14.1.0",
-    "eslint-plugin-import": "2.2.0",
-    "eslint-plugin-jsx-a11y": "4.0.0",
-    "eslint-plugin-react": "6.10.0"
+    "yo": "1.8.5"
   }
 }
