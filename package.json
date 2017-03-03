@@ -28,9 +28,7 @@
     "npm-check": "5.4.0",
     "npm-check-updates": "2.10.3",
     "winston": "2.3.1",
-    "yo": "1.8.5"
-  },
-  "devDependencies": {
+    "yo": "1.8.5",
     "babel-eslint": "7.1.1",
     "eslint": "3.16.1",
     "eslint-config-airbnb": "14.1.0",
