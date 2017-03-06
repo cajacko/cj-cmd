@@ -10,7 +10,7 @@ const npmCheck = require('npm-check');
 
 winston.cli();
 
-const validCommands = [null, 'install', 'update', 'run'];
+const validCommands = [null, 'install', 'update', 'globCom'];
 const { command, argv } = commandLineCommands(validCommands);
 const windowsEnvironment = /^win/.test(process.platform);
 
@@ -130,10 +130,10 @@ npmCheck({
     }
 
     winston.log('debug', 'Finished update child process');
-  } else if (command === 'run') {
-    winston.log('debug', 'Run');
+  } else if (command === 'globCom') {
+    winston.log('debug', 'globCom');
 
-    const globCom = path.join(__dirname, '/../node_modules/global-commands/index.js');
+    const globCom = path.join(__dirname, '/../node_modules/global-commands/src/index.js');
 
     winston.log('debug', 'Global Commands path', globCom);
     winston.log('debug', 'Spawn Global Commands child process');
