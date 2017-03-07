@@ -26,7 +26,7 @@
     "generator-cucumber-js": "*",
     "generator-editor-config": "*",
     "generator-eslint-cj": "*",
-    "generator-flow": "1.1.0",
+    "generator-flow": "*",
     "generator-generator-cj": "*",
     "generator-git-cj": "*",
     "generator-gitignore-cj": "*",
