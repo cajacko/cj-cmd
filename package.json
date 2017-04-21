@@ -33,6 +33,7 @@
     "generator-gitignore-cj": "*",
     "generator-package-json": "*",
     "generator-readme-cj": "*",
+    "generator-wordpress-react": "*",
     "global-commands": "*",
     "npm-check": "5.4.0",
     "npm-check-updates": "2.10.3",
